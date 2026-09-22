@@ -37,7 +37,7 @@ Execute o arquivo
 Importe as views geradas em SQL para o Power BI (é necessário um conector postgreSQL) e monte o dashboard como quiser.  
 
 ## Estrutura de pastas  
-customer_journey_inteligence/
+customer_journey_inteligence/  
 ├── README.md  
 ├── docs/  
 │   ├── dicionario_de_dados.md  
