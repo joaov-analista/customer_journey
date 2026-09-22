@@ -56,7 +56,8 @@ customer_journey_inteligence/
 │   └── generator.py  
 │  
 ├── sql/  
-│   ├── ddl_criacao_tabelas.sql  
+│   ├── criacao_tabelas.sql  
+|   ├── index.sql  
 │   └── views/  
 │       ├── vw_dificuldade_p_funcionalidade.sql  
 │       ├── vw_frustracao_por_funcionalidade.sql  
