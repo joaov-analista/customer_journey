@@ -1,6 +1,9 @@
 # customer_journey
 
 ## Descrição do problema de negócio  
+A experiência do cliente em canais digitais é um dos principais vetores de retenção e satisfação no mercado. Falhas na jornada digital impactam diretamente o NPS, aumentam o volume de atendimento humano e elevam o risco de churn.
+
+Este projeto simula a jornada de 20.000 clientes em um aplicativo bancário fictício ao longo de 12 meses, gerando mais de 1,6 milhão de eventos de navegação. O objetivo é identificar onde os clientes encontram mais dificuldades, quais perfis têm pior experiência e quais melhorias devem ser priorizadas com base no impacto real sobre o NPS.
 
 ## Objetivos e perguntas respondidas  
 O objetivo desse projeto foi analisar o comportamento do usuário em aplicativos, mas que pode ser replicado em outras áreas também que são impostantes no mercado.  
@@ -24,13 +27,28 @@ Quais problemas afetam mais clientes?
 ## Arquitetura da solução (diagrama simples)  
 <img width="700" height="698" alt="diagram_customer_journey" src="https://github.com/user-attachments/assets/62a606bc-9c15-47d7-9e1b-e3557058ba89" />
 
-## Stack utilizada
+## Stack utilizada  
+Linguagem: Python 3.11 para Simulação e geração dos dados.  
+Simulação: pandas, numpy, faker	para Geração de dados sintéticos.  
+Banco de dados: PostgreSQL para	Armazenamento e camada analítica.  
+Interface BD: pgAdmin 4	para Administração e execução de queries.  
+Visualização: Power BI Desktop para Dashboard e apresentação dos insights.  
+Versionamento: GitHub para Controle de versão e portfólio.  
+
 ## Como reproduzir o projeto (passo a passo)  
 OBS: o dashboard está disponivel [Aqui]().  
+Verifique todos os arquivos Python e altere os diretórios de entrada e saída dos dados
 
 Baixe os arquivos Python [Aqui]() e deixe todos na mesma pasta.    
-Execute os arquivos nessa ordem no editor de código de sua preferência (recomendado VS Code):    
-Importe os arquivos CSV gerados para o SGBD de sua preferência (recomendado o PG Admin).  
+No editor de código de sua preferência (recomendado VS Code), execute os arquivos Python nessa ordem:  
+1. customers.py → gera clientes.csv  
+2. sessions.py → lê clientes.csv, gera sessoes.csv  
+3. events.py → lê sessoes.csv e clientes.csv, gera eventos.csv, erros.csv e atualiza sessoes.csv  
+4. ratings.py → lê sessoes.csv, clientes.csv e eventos.csv, gera avaliacoes.csv  
+5. generator.py → orquestra tudo acima em sequência e exporta todos os CSVs com um único comando.
+6. validacoes.py → valida os dados gerados pelo python.
+7. transformacao.py → aplica limpeza de espaços vazios, transforma valores categoricos e tipos de dados e verifica outliers. Gera CSVs tratados.  
+Importe os arquivos CSV gerados para a interfacie BD de sua preferência (recomendado o PG Admin).  
 Baixe os arquivos SQL [Aqui]().  
 Execute o arquivo  
 Execute o arquivo
