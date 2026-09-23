@@ -77,10 +77,8 @@ customer_journey_inteligence/
 │   ├── criacao_tabelas.sql  
 |   ├── index.sql  
 │   └── views/  
-│       ├── vw_dificuldade_p_funcionalidade.sql  
-│       ├── vw_frustracao_por_funcionalidade.sql  
-│       └── ...  
-│  
+│       ├── views.sql  
+|
 ├── data/  
 │   └── raw/        ← CSVs gerados (ou .gitignore se forem grandes)
 │  
