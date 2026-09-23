@@ -18,8 +18,6 @@ Fonte: eventos
 - logout sempre apresenta pct_taxa_erro = 0 por regra de negócio
 - home tem baixa taxa mas alto volume absoluto de erros
 
----
-
 ## vw_frustracao_por_funcionalidade
 
 **Pergunta respondida:** Quais funcionalidades geram maior frustração?
