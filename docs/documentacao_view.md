@@ -1,0 +1,192 @@
+Todas as views foram criadas no PostgreSQL e consomem diretamente as tabelas brutas. São a única camada que o Power BI acessa.
+
+## vw_dificuldade_p_funcionalidade
+
+**Pergunta respondida:** Onde os clientes encontram mais dificuldades?  
+**Fonte:** `eventos`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Nome da funcionalidade |
+| total_eventos | BIGINT | Total de eventos registrados |
+| total_erros | BIGINT | Total de eventos com erro |
+| pct_taxa_erro | NUMERIC | Percentual de eventos com erro sobre o total |
+| media_tempo_segundos | NUMERIC | Tempo médio por evento em segundos |
+| sessoes_afetadas | BIGINT | Sessões únicas que passaram pela funcionalidade |
+
+**Observações:**  
+- `logout` sempre apresenta `pct_taxa_erro = 0` por regra de negócio  
+- `home` tem baixa taxa mas alto volume absoluto de erros  
+
+## vw_frustracao_por_funcionalidade
+
+**Pergunta respondida:** Quais funcionalidades geram maior frustração?  
+**Fontes:** `eventos`, `sessoes`, `erros`, `avaliacoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Nome da funcionalidade |
+| score_medio | NUMERIC | Score médio das sessões que usaram a funcionalidade |
+| nps_medio | NUMERIC | NPS médio das avaliações aceitas |
+| csat_medio | NUMERIC | CSAT médio das avaliações aceitas |
+| total_erros | BIGINT | Total de erros registrados |
+| erros_nao_resolvidos | BIGINT | Erros sem retentativa bem-sucedida |
+
+## vw_experiencia_por_perfil
+
+**Pergunta respondida:** Quais perfis possuem pior experiência?  
+**Fontes:** `clientes`, `sessoes`, `avaliacoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| persona | VARCHAR | Perfil comportamental |
+| segmento | VARCHAR | Segmento bancário |
+| faixa_renda | VARCHAR | Faixa de renda |
+| app_favorito | VARCHAR | Dispositivo preferido |
+| total_sessoes | BIGINT | Total de sessões do perfil |
+| score_medio | NUMERIC | Score médio de experiência |
+| nps_medio | NUMERIC | NPS médio das avaliações aceitas |
+| csat_medio | NUMERIC | CSAT médio das avaliações aceitas |
+| pct_sessao_abandonada | NUMERIC | Percentual de sessões abandonadas |
+| nps_score | NUMERIC | NPS Score calculado: (promotores − detratores) / total × 100 |
+
+## vw_etapa_com_mais_abandono
+
+**Pergunta respondida:** Em qual etapa ocorre o maior abandono?  
+**Fontes:** `eventos`, `sessoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Funcionalidade no momento do abandono |
+| total_abandonos | BIGINT | Total de sessões abandonadas nessa funcionalidade |
+| pct_do_total | NUMERIC | Percentual sobre o total de abandonos |
+| ordem_media_abandono | NUMERIC | Ordem média do evento de abandono na sessão |
+
+**Observação:** considera apenas o último evento de sessões com `abandonada = true`.
+
+## vw_tempo_por_funcionalidade
+
+**Pergunta respondida:** Quanto tempo o usuário leva em cada funcionalidade?  
+**Fonte:** `eventos`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Nome da funcionalidade |
+| status | VARCHAR | Status do evento: `sucesso`, `erro` ou `abandono` |
+| total_eventos | BIGINT | Total de eventos no grupo |
+| media_tempo_segundos | NUMERIC | Tempo médio em segundos |
+| minimo_seg | INT | Menor tempo registrado |
+| maximo_seg | INT | Maior tempo registrado |
+
+## vw_caminhos_experiencia_positiva
+
+**Pergunta respondida:** Quais caminhos levam a uma experiência positiva?  
+**Fontes:** `sessoes`, `clientes`, `avaliacoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| motivo_encerramento | VARCHAR | Como a sessão foi encerrada |
+| qualidade_conexao | VARCHAR | Qualidade da conexão na sessão |
+| versao_app | VARCHAR | Versão do app usada |
+| persona | VARCHAR | Perfil do cliente |
+| total_sessoes | BIGINT | Total de sessões no grupo |
+| score_medio | NUMERIC | Score médio de experiência |
+| nps_medio | NUMERIC | NPS médio das avaliações aceitas |
+| sessoes_positivas | BIGINT | Sessões com score ≥ 80 |
+| pct_positivas | NUMERIC | Percentual de sessões positivas no grupo |
+
+## vw_assuntos_com_maior_frequencia
+
+**Pergunta respondida:** Quais assuntos aparecem com mais frequência nas reclamações?  
+**Fontes:** `avaliacoes`, `sessoes`, `clientes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| comentario | TEXT | Texto do comentário do cliente |
+| nps | SMALLINT | NPS da avaliação |
+| csat | SMALLINT | CSAT da avaliação |
+| score_experiencia | SMALLINT | Score da sessão avaliada |
+| persona | VARCHAR | Perfil do cliente |
+| segmento | VARCHAR | Segmento bancário |
+| motivo_encerramento | VARCHAR | Como a sessão foi encerrada |
+| qualidade_conexao | VARCHAR | Qualidade da conexão |
+
+**Observação:** retorna apenas registros com `comentario IS NOT NULL`.
+
+## vw_sentimento_por_funcionalidade
+
+**Pergunta respondida:** O sentimento varia conforme a funcionalidade?  
+**Fontes:** `eventos`, `avaliacoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Nome da funcionalidade |
+| nps_medio | NUMERIC | NPS médio das avaliações aceitas |
+| csat_medio | NUMERIC | CSAT médio das avaliações aceitas |
+| score_medio | NUMERIC | Score médio de experiência |
+| avaliacoes | BIGINT | Total de avaliações aceitas |
+| detratores | BIGINT | Avaliações com NPS ≤ 6 |
+| promotores | BIGINT | Avaliações com NPS ≥ 9 |
+| nps_score | NUMERIC | NPS Score: (promotores − detratores) / total × 100 |
+
+## vw_padroes
+
+**Pergunta respondida:** Existem padrões recorrentes? Qual melhoria deve ser feita primeiro? Quais problemas afetam mais clientes?  
+**Fontes:** `erros`, `eventos`, `sessoes`, `avaliacoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| tipo_erro | VARCHAR | Classificação do erro |
+| funcionalidade | VARCHAR | Funcionalidade onde o erro ocorreu |
+| total_erros | BIGINT | Total de erros no grupo |
+| clientes_afetados | BIGINT | Clientes únicos impactados |
+| sessoes_afetadas | BIGINT | Sessões únicas impactadas |
+| score_medio_sessao | NUMERIC | Score médio das sessões com esse erro |
+| nps_medio | NUMERIC | NPS médio das avaliações das sessões afetadas |
+| pct_resolucao | NUMERIC | Percentual de erros resolvidos por retentativa |
+| media_tentativas | NUMERIC | Média de tentativas por erro |
+| nps_score | NUMERIC | NPS Score das sessões afetadas |
+
+## vw_nps_p_funcionalidade
+
+**Pergunta respondida:** Qual funcionalidade gera maior impacto no NPS?  
+**Fontes:** `eventos`, `sessoes`, `avaliacoes`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Nome da funcionalidade |
+| sessoes_com_funcionalidade | BIGINT | Sessões que usaram a funcionalidade |
+| nps_medio_sem_erro | NUMERIC | NPS médio quando não houve erro |
+| nps_com_erro | NUMERIC | NPS médio quando houve erro |
+| delta_nps | NUMERIC | Diferença: NPS sem erro − NPS com erro |
+| nps_score | NUMERIC | NPS Score geral da funcionalidade |
+
+**Observação:** `delta_nps` é a métrica principal, quanto maior, maior o ganho de NPS ao eliminar o erro nessa funcionalidade.
+
+## vw_hora_com_mais_erros
+
+**Pergunta respondida:** A hora do dia influencia a ocorrência de erros?  
+**Fontes:** `eventos`, `sessoes`, `erros`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Funcionalidade com erro |
+| hora_dia | SMALLINT | Hora do dia (0–23) |
+| total_erros | BIGINT | Total de erros no grupo |
+| total_eventos | BIGINT | Total de eventos com erro |
+| media_tempo_segundos | NUMERIC | Tempo médio dos eventos com erro |
+| media_score_experiencia | NUMERIC | Score médio das sessões com erro nessa hora |
+
+## vw_dia_semana_com_mais_erros
+
+**Pergunta respondida:** O dia da semana influencia a ocorrência de erros?  
+**Fontes:** `eventos`, `sessoes`, `erros`
+
+| Coluna | Tipo | Descrição |
+|---|---|---|
+| funcionalidade | VARCHAR | Funcionalidade com erro |
+| dia_semana | VARCHAR | Nome do dia da semana |
+| total_erros | BIGINT | Total de erros no grupo |
+| total_eventos | BIGINT | Total de eventos com erro |
+| media_tempo_segundos | NUMERIC | Tempo médio dos eventos com erro |
+| media_score_experiencia | NUMERIC | Score médio das sessões com erro nesse dia |
