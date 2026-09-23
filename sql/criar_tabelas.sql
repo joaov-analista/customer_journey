@@ -1,5 +1,5 @@
 -- ================
--- CUSTOMER JOURNEY INTELIGENCE
+-- CUSTOMER JOURNEY INTELLIGENCE
 -- ================
 
 -- 1. CLIENTES
