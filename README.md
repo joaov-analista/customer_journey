@@ -51,6 +51,7 @@ No editor de código de sua preferência (recomendado VS Code), execute os arqui
 Importe os arquivos CSV gerados por `transformacao.py` para a interfacie BD de sua preferência (recomendado o PG Admin).  
 Baixe os arquivos SQL [Aqui](https://github.com/joaov-analista/customer_journey/tree/main/sql).  
 Execute os arquivos SQL nessa ordem:
+
 1. `criar_tabelas.sql` → cria as tabelas e o database
 2. `index.sql` → cria os indices para melhor performance do BD
 3. `views.sql` → cria as views respondendo as perguntas de negócio   
@@ -60,12 +61,11 @@ Importe as views geradas em SQL para o Power BI (é necessário um conector post
 customer_journey_inteligence/  
 ├── README.md  
 ├── docs/  
-│   ├── dicionario_de_dados.md  
-│   ├── regras_de_negocio.md  
-│   ├── documentacao_views.md  
-│   ├── decisoes_tecnicas.md  
-│   ├── lineage.md  
-│   └── erd.png  
+│       ├── dicionario_de_dados.md  
+│       ├── regras_de_negocio.md  
+│       ├── documentacao_views.md  
+│       ├── decisoes_tecnicas.md   
+│       └── erd.png  
 │  
 ├── src/  
 │   ├── config.py  
