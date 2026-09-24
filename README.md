@@ -24,6 +24,42 @@ Qual melhoria deve ser feita primeiro?
 Qual funcionalidade gera maior impacto no NPS?  
 Quais problemas afetam mais clientes?  
 
+## Principais Insights
+
+### Experiência
+- **LOGIN concentra 46% de todos os erros** e tem taxa de 2,91% — quase o dobro do PIX (1,69%), segunda colocada.  
+- **Idosos têm taxa de abandono de 65,14%** contra 3,73% do segmento Premium — a maior disparidade entre perfis.  
+
+### Jornada
+- **79,53% dos abandonos acontecem no LOGIN** — o cliente desiste antes mesmo de entrar no app.   
+- Sessões com erro duram em média **2,2× mais** do que sessões sem erro.  
+- Chat tem o maior tempo mediano por funcionalidade: **227 segundos**
+
+### Feedback
+- Os termos mais frequentes nos comentários negativos são **"lento"**, **"travou"** e **"inaceitável"**
+- Sessões encerradas por abandono têm score médio de 24 — contra 94 das sessões com logout normal
+- Versão 5.8 do app gera **2,8× mais erros** que a versão 6.1
+
+### Priorização
+- **LOGIN é a prioridade máxima**: 5.254 clientes afetados,
+  score médio de 51,23 e maior volume absoluto de abandono
+- **PIX é a segunda prioridade**: 3.054 clientes afetados com
+  score médio de 65,90 — impacto financeiro direto
+- Melhorar a conexão de qualidade "ruim" para "boa" reduz
+  a probabilidade de erro em 4,5×
+
+---
+
+## Recomendações
+
+| Prioridade | Ação | Impacto esperado |
+|---|---|---|
+| 1 | Reduzir erros de autenticação no LOGIN | Elimina 79% dos abandonos de sessão |
+| 2 | Melhorar estabilidade do PIX | Reduz insatisfação em 3.054 clientes |
+| 3 | Programa de acessibilidade digital para idosos | Reduz abandono de 65% para próximo da média |
+| 4 | Forçar atualização da versão 5.8 | Remove multiplicador de erro de 2,8× |
+| 5 | Otimizar tempo de resposta do CHAT | Reduz tempo mediano de 227s |
+
 ## Arquitetura da solução (diagrama simples)  
 <img width="700" height="698" alt="diagram_customer_journey" src="https://github.com/user-attachments/assets/62a606bc-9c15-47d7-9e1b-e3557058ba89" />
 
