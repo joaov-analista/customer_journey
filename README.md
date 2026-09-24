@@ -1,4 +1,4 @@
-# customer_journey
+# Customer journey
 
 ## Descrição do problema de negócio  
 A experiência do cliente em canais digitais é um dos principais vetores de retenção e satisfação no mercado. Falhas na jornada digital impactam diretamente o NPS, aumentam o volume de atendimento humano e elevam o risco de churn.
