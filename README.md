@@ -50,42 +50,11 @@ No editor de código de sua preferência (recomendado VS Code), execute os arqui
 7. transformacao.py → aplica limpeza de espaços vazios, transforma valores categoricos e tipos de dados e verifica outliers. Gera CSVs tratados.  
 Importe os arquivos CSV gerados por `transformacao.py` para a interfacie BD de sua preferência (recomendado o PG Admin).  
 Baixe os arquivos SQL [Aqui](https://github.com/joaov-analista/customer_journey/tree/main/sql).  
-Execute os arquivos SQL nessa ordem:
-
-1. `criar_tabelas.sql` → cria as tabelas e o database
-2. `index.sql` → cria os indices para melhor performance do BD
-3. `views.sql` → cria as views respondendo as perguntas de negócio   
-Importe as views geradas em SQL para o Power BI (é necessário um conector postgreSQL) e monte o dashboard como quiser.  
-
-## Estrutura de pastas  
-customer_journey_inteligence/  
-├── README.md  
-├── docs/  
-│       ├── dicionario_de_dados.md  
-│       ├── regras_de_negocio.md  
-│       ├── documentacao_views.md  
-│       ├── decisoes_tecnicas.md   
-│       └── erd.png  
-│  
-├── src/  
-│   ├── config.py  
-│   ├── customers.py  
-│   ├── sessions.py  
-│   ├── events.py  
-│   ├── ratings.py  
-│   └── generator.py  
-│  
-├── sql/  
-│   ├── criacao_tabelas.sql  
-|   ├── index.sql  
-│   └── views/  
-│       ├── views.sql  
-|
-├── data/  
-│   └── raw/        ← CSVs gerados (ou .gitignore se forem grandes)
-│  
-└── dashboard/  
-    └── customer_journey.pbix  
+Execute os arquivos SQL nessa ordem:  
+1- `criar_tabelas.sql` → cria as tabelas e o database  
+2- `index.sql` → cria os indices para melhor performance do BD  
+3- `views.sql` → cria as views respondendo as perguntas de negócio     
+Importe as views geradas em SQL para o Power BI (é necessário um conector postgreSQL) e monte o dashboard como quiser.   
 
 ## Autor e contato  
 João Vítor - Analista de dados  
