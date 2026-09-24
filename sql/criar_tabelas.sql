@@ -2,6 +2,8 @@
 -- CUSTOMER JOURNEY INTELLIGENCE
 -- ================
 
+CREATE DATABASE customer_journey;
+
 -- 1. CLIENTES
 CREATE TABLE IF NOT EXISTS clientes (
 	id_cliente SERIAL PRIMARY KEY,
