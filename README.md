@@ -36,10 +36,10 @@ Visualização: Power BI Desktop para Dashboard e apresentação dos insights.
 Versionamento: GitHub para Controle de versão e portfólio.  
 
 ## Como reproduzir o projeto (passo a passo)  
-OBS: o dashboard está disponivel [Aqui]().  
+OBS: o dashboard está disponivel [Aqui](https://github.com/joaov-analista/customer_journey/tree/main/dashboard).  
 Verifique todos os arquivos Python e altere os diretórios de entrada e saída dos dados
 
-Baixe os arquivos Python [Aqui]() e deixe todos na mesma pasta.    
+Baixe os arquivos Python [Aqui](https://github.com/joaov-analista/customer_journey/tree/main/src) e deixe todos na mesma pasta.    
 No editor de código de sua preferência (recomendado VS Code), execute os arquivos Python nessa ordem:  
 1. customers.py → gera clientes.csv  
 2. sessions.py → lê clientes.csv, gera sessoes.csv  
@@ -48,10 +48,12 @@ No editor de código de sua preferência (recomendado VS Code), execute os arqui
 5. generator.py → orquestra tudo acima em sequência e exporta todos os CSVs com um único comando.
 6. validacoes.py → valida os dados gerados pelo python.
 7. transformacao.py → aplica limpeza de espaços vazios, transforma valores categoricos e tipos de dados e verifica outliers. Gera CSVs tratados.  
-Importe os arquivos CSV gerados para a interfacie BD de sua preferência (recomendado o PG Admin).  
-Baixe os arquivos SQL [Aqui]().  
-Execute o arquivo  
-Execute o arquivo
+Importe os arquivos CSV gerados por `transformacao.py` para a interfacie BD de sua preferência (recomendado o PG Admin).  
+Baixe os arquivos SQL [Aqui](https://github.com/joaov-analista/customer_journey/tree/main/sql).  
+Execute os arquivos SQL nessa ordem:
+1. `criar_tabelas.sql` → cria as tabelas e o database
+2. `index.sql` → cria os indices para melhor performance do BD
+3. `views.sql` → cria as views respondendo as perguntas de negócio   
 Importe as views geradas em SQL para o Power BI (é necessário um conector postgreSQL) e monte o dashboard como quiser.  
 
 ## Estrutura de pastas  
