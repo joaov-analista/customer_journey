@@ -114,7 +114,7 @@ Após um erro, o cliente pode tentar novamente ou abandonar.
 - Máximo de 3 tentativas por evento
 - A probabilidade de abandono varia por persona:
 
-| Persona | P(abandono pós-erro) |
+| Persona | Abandono pós-erro |
 |---|---|
 | Jovem Digital | 55% |
 | Idoso | 45% |
